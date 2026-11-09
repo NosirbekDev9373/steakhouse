@@ -11,3 +11,10 @@ Route::get('/menu', [PageController::class, 'menu'])->name('menu');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
+
+Route::get('/lang/{locale}', function (string $locale) {
+    if (in_array($locale, ['uz', 'en'])) {
+        session(['locale' => $locale]);
+    }
+    return redirect()->back();
+})->name('lang.switch');
