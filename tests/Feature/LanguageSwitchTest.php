@@ -79,10 +79,20 @@ class LanguageSwitchTest extends TestCase
         $responseUz->assertSee(__('menu.title', [], 'uz'));
         $responseUz->assertSee(__('menu.filter_all', [], 'uz'));
 
+        $uzCategories = __('menu.categories', [], 'uz');
+        foreach ($uzCategories as $catName) {
+            $responseUz->assertSee($catName);
+        }
+
         // Check English
         $responseEn = $this->withSession(['locale' => 'en'])->get('/menu');
         $responseEn->assertStatus(200);
         $responseEn->assertSee(__('menu.title', [], 'en'));
         $responseEn->assertSee(__('menu.filter_all', [], 'en'));
+
+        $enCategories = __('menu.categories', [], 'en');
+        foreach ($enCategories as $catName) {
+            $responseEn->assertSee($catName);
+        }
     }
 }

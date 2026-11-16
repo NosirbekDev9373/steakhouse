@@ -7,6 +7,14 @@
     if (!is_array($categories)) {
         $categories = [];
     }
+    $categoryIcons = [
+        'steaks' => 'fa-fire',
+        'starters' => 'fa-leaf',
+        'soups' => 'fa-tint',
+        'sides' => 'fa-cutlery',
+        'desserts' => 'fa-birthday-cake',
+        'drinks' => 'fa-glass',
+    ];
 @endphp
 
 <section id="menu" class="parallax-section">
@@ -28,6 +36,9 @@
                     </button>
                     @foreach($categories as $key => $name)
                         <button type="button" class="btn menu-filter-btn" data-filter="{{ $key }}">
+                            @if(isset($categoryIcons[$key]))
+                                <i class="fa {{ $categoryIcons[$key] }}"></i>
+                            @endif
                             {{ $name }}
                         </button>
                     @endforeach
