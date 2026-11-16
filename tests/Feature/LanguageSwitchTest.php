@@ -79,10 +79,56 @@ class LanguageSwitchTest extends TestCase
         $responseUz->assertSee(__('menu.title', [], 'uz'));
         $responseUz->assertSee(__('menu.filter_all', [], 'uz'));
 
+        $uzCategories = __('menu.categories', [], 'uz');
+        foreach ($uzCategories as $catName) {
+            $responseUz->assertSee($catName);
+        }
+
         // Check English
         $responseEn = $this->withSession(['locale' => 'en'])->get('/menu');
         $responseEn->assertStatus(200);
         $responseEn->assertSee(__('menu.title', [], 'en'));
         $responseEn->assertSee(__('menu.filter_all', [], 'en'));
+
+        $enCategories = __('menu.categories', [], 'en');
+        foreach ($enCategories as $catName) {
+            $responseEn->assertSee($catName);
+        }
+    }
+
+    /**
+     * Test menu pagination controls and summary are properly localized.
+     */
+    public function test_menu_pagination_renders_localized_controls(): void
+    {
+        // Uzbek pagination controls
+        $responseUz = $this->withSession(['locale' => 'uz'])->get('/menu');
+        $responseUz->assertStatus(200);
+        $responseUz->assertSee(__('menu.pagination_prev', [], 'uz'));
+        $responseUz->assertSee(__('menu.pagination_next', [], 'uz'));
+        $responseUz->assertSee(__('menu.pagination_showing', ['from' => 1, 'to' => 6, 'total' => 23], 'uz'));
+
+        // English pagination controls
+        $responseEn = $this->withSession(['locale' => 'en'])->get('/menu');
+        $responseEn->assertStatus(200);
+        $responseEn->assertSee(__('menu.pagination_prev', [], 'en'));
+        $responseEn->assertSee(__('menu.pagination_next', [], 'en'));
+        $responseEn->assertSee(__('menu.pagination_showing', ['from' => 1, 'to' => 6, 'total' => 23], 'en'));
+    }
+
+    /**
+     * Test menu pagination and category query parameters update view correctly.
+     */
+    public function test_menu_pagination_query_parameters_apply_correctly(): void
+    {
+        // Page 2 request
+        $responsePage2 = $this->withSession(['locale' => 'en'])->get('/menu?page=2');
+        $responsePage2->assertStatus(200);
+        $responsePage2->assertSee(__('menu.pagination_showing', ['from' => 7, 'to' => 12, 'total' => 23], 'en'));
+
+        // Steaks category request
+        $responseSteaks = $this->withSession(['locale' => 'en'])->get('/menu?category=steaks&page=1');
+        $responseSteaks->assertStatus(200);
+        $responseSteaks->assertSee(__('menu.pagination_showing', ['from' => 1, 'to' => 5, 'total' => 5], 'en'));
     }
 }
