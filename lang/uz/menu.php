@@ -5,6 +5,10 @@ return [
     'title' => 'Bizning Taomnoma',
     'subtitle' => 'Steakhouse uchun maxsus tayyorlangan tansiq taomlar va elita go\'shtlar',
     'filter_all' => 'Barchasi',
+    'pagination_showing' => ':total ta taomdan :from-:to ko\'rsatilmoqda',
+    'pagination_prev' => 'Oldingi',
+    'pagination_next' => 'Keyingi',
+    'pagination_page' => 'Sahifa',
     'categories' => [
         'steaks' => 'Styeyklar',
         'starters' => 'Salat va Gazaklar',

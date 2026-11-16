@@ -5,6 +5,10 @@ return [
     'title' => 'Our Food Menu',
     'subtitle' => 'Special crafted menus and prime cuts for steak lovers',
     'filter_all' => 'All',
+    'pagination_showing' => 'Showing :from-:to of :total dishes',
+    'pagination_prev' => 'Previous',
+    'pagination_next' => 'Next',
+    'pagination_page' => 'Page',
     'categories' => [
         'steaks' => 'Steaks',
         'starters' => 'Salads & Starters',
