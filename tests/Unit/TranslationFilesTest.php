@@ -11,7 +11,19 @@ class TranslationFilesTest extends TestCase
      */
     public function test_translation_files_exist(): void
     {
-        $files = ['navbar.php', 'menu.php', 'footer.php'];
+        $files = [
+            'navbar.php',
+            'menu.php',
+            'footer.php',
+            'pagination.php',
+            'seo.php',
+            'about.php',
+            'feature.php',
+            'team.php',
+            'gallery.php',
+            'contact.php',
+            'main.php',
+        ];
 
         foreach ($files as $file) {
             $this->assertFileExists(base_path("lang/uz/{$file}"), "lang/uz/{$file} does not exist");
@@ -24,7 +36,19 @@ class TranslationFilesTest extends TestCase
      */
     public function test_translation_keys_match_between_locales(): void
     {
-        $files = ['navbar.php', 'menu.php', 'footer.php'];
+        $files = [
+            'navbar.php',
+            'menu.php',
+            'footer.php',
+            'pagination.php',
+            'seo.php',
+            'about.php',
+            'feature.php',
+            'team.php',
+            'gallery.php',
+            'contact.php',
+            'main.php',
+        ];
 
         foreach ($files as $file) {
             $uzTranslations = require base_path("lang/uz/{$file}");
@@ -49,7 +73,19 @@ class TranslationFilesTest extends TestCase
      */
     public function test_translations_are_not_empty(): void
     {
-        $files = ['navbar.php', 'menu.php', 'footer.php'];
+        $files = [
+            'navbar.php',
+            'menu.php',
+            'footer.php',
+            'pagination.php',
+            'seo.php',
+            'about.php',
+            'feature.php',
+            'team.php',
+            'gallery.php',
+            'contact.php',
+            'main.php',
+        ];
 
         foreach (['uz', 'en'] as $locale) {
             foreach ($files as $file) {
