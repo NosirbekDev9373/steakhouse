@@ -48,8 +48,8 @@ class PageController extends Controller
             'name' => 'required|string|max:100',
             'email' => 'required|email|max:100',
             'phone' => 'nullable|string|max:30',
-            'date' => 'nullable|string|max:50',
-            'guests' => 'nullable|string|max:20',
+            'date' => 'nullable|date',
+            'guests' => 'nullable|integer|min:1|max:50',
             'message' => 'required|string|max:1000',
         ]);
 

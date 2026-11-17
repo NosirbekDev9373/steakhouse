@@ -54,6 +54,46 @@ class ContactFormTest extends TestCase
     }
 
     /**
+     * Test invalid date and guest values are rejected while optional fields stay valid.
+     */
+    public function test_contact_form_rejects_invalid_date_and_guests(): void
+    {
+        $response = $this->from('/contact')->post('/contact', [
+            'name' => 'Ali Valiyev',
+            'email' => 'ali@example.com',
+            'date' => 'not-a-date',
+            'guests' => '999',
+            'message' => 'I would like to reserve a table.',
+        ]);
+
+        $response->assertRedirect('/contact');
+        $response->assertSessionHasErrors(['date', 'guests']);
+        $response->assertSessionDoesntHaveErrors(['name', 'email', 'message']);
+    }
+
+    /**
+     * Test the contact endpoint is rate limited after 5 submissions per minute.
+     */
+    public function test_contact_form_is_rate_limited(): void
+    {
+        $headers = ['Accept' => 'application/json'];
+
+        foreach (range(1, 5) as $i) {
+            $this->from('/contact')->post('/contact', [
+                'name' => "Guest {$i}",
+                'email' => 'guest@example.com',
+                'message' => 'Reservation request.',
+            ], $headers)->assertRedirect('/contact');
+        }
+
+        $this->post('/contact', [
+            'name' => 'Guest 6',
+            'email' => 'guest@example.com',
+            'message' => 'Reservation request.',
+        ], $headers)->assertStatus(429);
+    }
+
+    /**
      * Test the success message is returned in the active locale.
      */
     public function test_contact_success_message_is_localized(): void

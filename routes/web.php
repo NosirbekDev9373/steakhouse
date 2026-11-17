@@ -10,7 +10,9 @@ Route::get('/menu', [PageController::class, 'menu'])->name('menu');
 Route::get('/team', [PageController::class, 'team'])->name('team');
 Route::get('/gallery', [PageController::class, 'gallery'])->name('gallery');
 Route::get('/contact', [PageController::class, 'contact'])->name('contact');
-Route::post('/contact', [PageController::class, 'contactSubmit'])->name('contact.submit');
+Route::post('/contact', [PageController::class, 'contactSubmit'])
+    ->middleware('throttle:5,1')
+    ->name('contact.submit');
 
 Route::get('/sitemap.xml', [PageController::class, 'sitemap'])->name('sitemap');
 
