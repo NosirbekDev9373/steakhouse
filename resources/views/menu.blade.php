@@ -1,8 +1,7 @@
-<x-layouts.main>
-
-<x-slot:title>
-    {{ __('menu.page_title') }}
-</x-slot:title>
+<x-layouts.main
+    :title="__('seo.titles.menu')"
+    :description="__('seo.descriptions.menu')"
+    ogImage="images/menu/ribeye-steak.jpg">
 
 <x-menu-section />
 

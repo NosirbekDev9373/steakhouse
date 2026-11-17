@@ -1,20 +1,102 @@
+@props([
+    'title' => null,
+    'description' => null,
+    'keywords' => null,
+    'ogImage' => null,
+    'ogType' => 'website',
+])
+
+@php
+    $locale = app()->getLocale();
+    $pageTitle = $title ?? __('seo.default_title');
+    $metaDescription = $description ?? __('seo.default_description');
+    $metaKeywords = $keywords ?? __('seo.default_keywords');
+    $socialImage = $ogImage ? (str_starts_with($ogImage, 'http') ? $ogImage : asset($ogImage)) : asset('images/menu/ribeye-steak.jpg');
+    $currentUrl = url()->current();
+@endphp
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', $locale) }}">
 <head>
 
-    <title>{{ $title ?? 'Steak House - Free HTML Template' }}</title>
-    <!--
+    <title>{{ $pageTitle }}</title>
 
-    Tooplate 2083 Steak House
-
-        https://www.tooplate.com/view/2083-steak-house
-
-    -->
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=Edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="keywords" content="">
-    <meta name="description" content="">
+    <meta name="description" content="{{ $metaDescription }}">
+    <meta name="keywords" content="{{ $metaKeywords }}">
+    <meta name="author" content="Steak House Restaurant">
+    <meta name="robots" content="index, follow, max-image-preview:large">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="{{ $currentUrl }}">
+
+    <!-- Open Graph / Facebook Meta Tags -->
+    <meta property="og:site_name" content="{{ __('seo.site_name') }}">
+    <meta property="og:title" content="{{ $pageTitle }}">
+    <meta property="og:description" content="{{ $metaDescription }}">
+    <meta property="og:url" content="{{ $currentUrl }}">
+    <meta property="og:type" content="{{ $ogType }}">
+    <meta property="og:image" content="{{ $socialImage }}">
+    <meta property="og:image:alt" content="{{ $pageTitle }}">
+    <meta property="og:locale" content="{{ $locale === 'uz' ? 'uz_UZ' : 'en_US' }}">
+    <meta property="og:locale:alternate" content="{{ $locale === 'uz' ? 'en_US' : 'uz_UZ' }}">
+
+    <!-- Twitter Card Meta Tags -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="{{ $pageTitle }}">
+    <meta name="twitter:description" content="{{ $metaDescription }}">
+    <meta name="twitter:image" content="{{ $socialImage }}">
+
+    <!-- Schema.org Restaurant Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@@context": "https://schema.org",
+        "@type": "Restaurant",
+        "name": "Steak House",
+        "image": "{{ asset('images/menu/ribeye-steak.jpg') }}",
+        "@id": "{{ url('/') }}",
+        "url": "{{ url('/') }}",
+        "telephone": "+998712008899",
+        "priceRange": "$$$",
+        "servesCuisine": [
+            "Steakhouse",
+            "American Grill",
+            "Fine Dining"
+        ],
+        "menu": "{{ route('menu') }}",
+        "acceptsReservations": "True",
+        "address": {
+            "@type": "PostalAddress",
+            "streetAddress": "Amir Temur shoh ko'chasi, 45",
+            "addressLocality": "Tashkent",
+            "addressRegion": "Tashkent",
+            "postalCode": "100000",
+            "addressCountry": "UZ"
+        },
+        "geo": {
+            "@type": "GeoCoordinates",
+            "latitude": 41.311158,
+            "longitude": 69.279737
+        },
+        "openingHoursSpecification": [
+            {
+                "@type": "OpeningHoursSpecification",
+                "dayOfWeek": [
+                    "Monday",
+                    "Tuesday",
+                    "Wednesday",
+                    "Thursday",
+                    "Friday",
+                    "Saturday",
+                    "Sunday"
+                ],
+                "opens": "11:00",
+                "closes": "23:00"
+            }
+        ]
+    }
+    </script>
 
     <!-- stylesheets css -->
     <link rel="stylesheet" href="{{ asset('css/bootstrap.min.css') }}">
