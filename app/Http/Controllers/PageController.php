@@ -69,7 +69,7 @@ class PageController extends Controller
         ];
 
         $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xhtml="http://www.w3.org/1999/xhtml">' . PHP_EOL;
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
 
         foreach ($routes as $route) {
             $xml .= '    <url>' . PHP_EOL;
@@ -77,8 +77,6 @@ class PageController extends Controller
             $xml .= '        <lastmod>' . date('Y-m-d') . '</lastmod>' . PHP_EOL;
             $xml .= '        <changefreq>' . $route['changefreq'] . '</changefreq>' . PHP_EOL;
             $xml .= '        <priority>' . $route['priority'] . '</priority>' . PHP_EOL;
-            $xml .= '        <xhtml:link rel="alternate" hreflang="uz" href="' . htmlspecialchars($route['loc']) . '"/>' . PHP_EOL;
-            $xml .= '        <xhtml:link rel="alternate" hreflang="en" href="' . htmlspecialchars($route['loc']) . '"/>' . PHP_EOL;
             $xml .= '    </url>' . PHP_EOL;
         }
 

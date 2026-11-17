@@ -19,6 +19,7 @@ class PageRoutesTest extends TestCase
             '/team',
             '/gallery',
             '/contact',
+            '/sitemap.xml',
             '/up',
         ];
 

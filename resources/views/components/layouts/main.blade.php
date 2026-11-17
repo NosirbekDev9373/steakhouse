@@ -28,11 +28,8 @@
     <meta name="author" content="Steak House Restaurant">
     <meta name="robots" content="index, follow, max-image-preview:large">
 
-    <!-- Canonical & Alternate Hreflang Tags -->
+    <!-- Canonical URL -->
     <link rel="canonical" href="{{ $currentUrl }}">
-    <link rel="alternate" hreflang="uz" href="{{ $currentUrl }}">
-    <link rel="alternate" hreflang="en" href="{{ $currentUrl }}">
-    <link rel="alternate" hreflang="x-default" href="{{ $currentUrl }}">
 
     <!-- Open Graph / Facebook Meta Tags -->
     <meta property="og:site_name" content="{{ __('seo.site_name') }}">
