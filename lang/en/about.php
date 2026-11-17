@@ -13,5 +13,4 @@ return [
     'feature_3' => 'Unmatched hospitality and personalized fine dining service',
     'stats_years' => 'Years of Legacy',
     'stats_steaks' => 'Happy Guests Welcomed',
-    'stats_recipes' => 'Signature House Recipes',
 ];

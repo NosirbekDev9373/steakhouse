@@ -37,7 +37,7 @@
                 <div class="clearfix"></div>
 
                 @foreach($chefs as $chef)
-                    <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="{{ 0.3 + ($loop->index * 0.2) }}s">
+                    <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="{{ number_format(0.3 + ($loop->index * 0.2), 1) }}s">
                         <div class="team-thumb">
                             <img src="{{ asset($chef['image']) }}" class="img-responsive" alt="{{ $chef['name'] }}">
                             <div class="team-des">

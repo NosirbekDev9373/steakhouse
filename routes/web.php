@@ -20,5 +20,6 @@ Route::get('/lang/{locale}', function (string $locale) {
     if (in_array($locale, ['uz', 'en'])) {
         session(['locale' => $locale]);
     }
+
     return redirect()->back();
 })->name('lang.switch');

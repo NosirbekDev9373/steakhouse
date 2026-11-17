@@ -65,7 +65,7 @@
             @endphp
 
             @for($i = 1; $i <= 3; $i++)
-                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="{{ 0.3 + (($i - 1) * 0.3) }}s">
+                <div class="col-md-4 col-sm-6 wow fadeInUp" data-wow-delay="{{ number_format(0.3 + (($i - 1) * 0.3), 1) }}s">
                     <div class="feature-thumb">
                         <div class="feature-icon">
                             <span><i class="fa {{ $featureIcons[$i - 1] }}"></i></span>
@@ -185,7 +185,7 @@
             <div class="clearfix"></div>
 
             @foreach($chefs as $chef)
-                <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="{{ 0.4 + ($loop->index * 0.2) }}s">
+                <div class="col-md-3 col-sm-6 wow fadeInUp" data-wow-delay="{{ number_format(0.4 + ($loop->index * 0.2), 1) }}s">
                     <div class="team-thumb">
                         <img src="{{ asset($chef['image']) }}" class="img-responsive" alt="{{ $chef['name'] }}">
                         <div class="team-des">

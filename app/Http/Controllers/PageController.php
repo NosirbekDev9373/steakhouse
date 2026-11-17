@@ -68,16 +68,16 @@ class PageController extends Controller
             ['loc' => route('contact'), 'priority' => '0.8', 'changefreq' => 'monthly'],
         ];
 
-        $xml = '<?xml version="1.0" encoding="UTF-8"?>' . PHP_EOL;
-        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">' . PHP_EOL;
+        $xml = '<?xml version="1.0" encoding="UTF-8"?>'.PHP_EOL;
+        $xml .= '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'.PHP_EOL;
 
         foreach ($routes as $route) {
-            $xml .= '    <url>' . PHP_EOL;
-            $xml .= '        <loc>' . htmlspecialchars($route['loc']) . '</loc>' . PHP_EOL;
-            $xml .= '        <lastmod>' . date('Y-m-d') . '</lastmod>' . PHP_EOL;
-            $xml .= '        <changefreq>' . $route['changefreq'] . '</changefreq>' . PHP_EOL;
-            $xml .= '        <priority>' . $route['priority'] . '</priority>' . PHP_EOL;
-            $xml .= '    </url>' . PHP_EOL;
+            $xml .= '    <url>'.PHP_EOL;
+            $xml .= '        <loc>'.htmlspecialchars($route['loc']).'</loc>'.PHP_EOL;
+            $xml .= '        <lastmod>'.date('Y-m-d').'</lastmod>'.PHP_EOL;
+            $xml .= '        <changefreq>'.$route['changefreq'].'</changefreq>'.PHP_EOL;
+            $xml .= '        <priority>'.$route['priority'].'</priority>'.PHP_EOL;
+            $xml .= '    </url>'.PHP_EOL;
         }
 
         $xml .= '</urlset>';

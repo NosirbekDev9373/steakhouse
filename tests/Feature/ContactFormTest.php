@@ -15,7 +15,7 @@ class ContactFormTest extends TestCase
 
         $response->assertStatus(200);
         $response->assertSee('name="_token"', false);
-        $response->assertSee('action="' . route('contact.submit') . '"', false);
+        $response->assertSee('action="'.route('contact.submit').'"', false);
     }
 
     /**

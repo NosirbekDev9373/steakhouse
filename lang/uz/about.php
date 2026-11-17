@@ -13,5 +13,4 @@ return [
     'feature_3' => 'Har bir mijoz uchun alohida samimiy va oliy darajadagi xizmat',
     'stats_years' => 'Yillik An\'ana',
     'stats_steaks' => 'Mingdan Ortiq Mamnun Mehmonlar',
-    'stats_recipes' => 'Maxsus Mualliflik Retseptlari',
 ];

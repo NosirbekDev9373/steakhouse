@@ -1,5 +1,5 @@
-<x-layouts.main 
-    :title="__('seo.titles.feature')" 
+<x-layouts.main
+    :title="__('seo.titles.feature')"
     :description="__('seo.descriptions.feature')">
 
     <!-- Feature section -->

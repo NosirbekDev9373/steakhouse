@@ -1,5 +1,5 @@
-<x-layouts.main 
-    :title="__('seo.titles.about')" 
+<x-layouts.main
+    :title="__('seo.titles.about')"
     :description="__('seo.descriptions.about')"
     ogImage="images/about-img.jpg">
 
@@ -88,7 +88,7 @@
                             </div>
                         </div>
 
-                        <div style="margin-top: 25px; text-center">
+                        <div class="text-center" style="margin-top: 25px;">
                             <a href="{{ route('menu') }}" class="btn btn-danger btn-block" style="background: #c21500; border-radius: 25px; padding: 10px 20px; font-weight: 600; letter-spacing: 1px;">
                                 <i class="fa fa-cutlery"></i> {{ __('navbar.menu') }}
                             </a>

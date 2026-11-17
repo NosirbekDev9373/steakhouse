@@ -22,7 +22,7 @@ class SitemapTest extends TestCase
         $this->assertStringContainsString('<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">', $content);
 
         foreach (['/', '/menu', '/about', '/feature', '/gallery', '/team', '/contact'] as $path) {
-            $this->assertStringContainsString('<loc>' . url($path) . '</loc>', $content);
+            $this->assertStringContainsString('<loc>'.url($path).'</loc>', $content);
         }
 
         $this->assertSame(7, substr_count($content, '<url>'));
