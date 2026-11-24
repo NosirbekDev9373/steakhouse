@@ -1,58 +1,161 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Steak House — restoran veb-sayti
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Toshkentdagi premium styeyk restorani uchun yasalgan ko'p tilli, responsive veb-sayt. Loyiha **Laravel 13** asosida qurilgan bo'lib, tashrif buyuruvchilarga taomnoma, galereya, jamoa, afzalliklar va stol band qilish imkoniyatlarini taqdim etadi.
 
-## About Laravel
+## Xususiyatlar
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+- **7 ta sahifa**: Bosh sahifa, Afzalliklar, Biz haqimizda, Taomnoma, Jamoa, Galereya, Aloqa.
+- **Ikki tillilik (i18n)**: O'zbekcha / Inglizcha. Til tanlash `/lang/{locale}` orqali sessionga saqlanadi, `SetLocale` middleware har so'rovda tilni qo'llaydi. Barcha matnlar `lang/uz` va `lang/en` papkalarida.
+- **Taomnoma**: 6 toifa (steyklar, boshlang'ich taomlar, sho'rvalar, garnirlar, desertlar, ichimliklar) bo'yicha filtrlash, 6 ta elementli sahifalash (pagination), server tomonida ham ko'rsatiladi.
+- **Aloqa / bron qilish shakli**: `name`, `email`, `message` majburiy; `phone`, `date`, `guests` ixtiyoriy. Validatsiya xatolari tarjima qilinadi. So'rovlar **daqiqasiga 5 ta** bilan cheklangan (`throttle:5,1`).
+- **SEO**: har bir sahifa uchun alohida title/description/keywords, canonical URL, Open Graph va Twitter Card meta teglari, `Schema.org Restaurant` strukturasi, `robots.txt` va avtomatik `/sitemap.xml`.
+- **Testlar**: Feature va Unit testlar (sahifalar, shakl validatsiyasi, til almashinuvi, tarjima fayllari, sitemap).
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+## Texnologiyalar
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+| Texnologiya | Versiya / Tavsif |
+| --- | --- |
+| PHP | 8.3+ |
+| Laravel | 13.x |
+| Vite | 8.x |
+| Tailwind CSS | 4.x (`@tailwindcss/vite`) |
+| Bootstrap | statik shablon (`public/css`, `public/js`) |
+| SQLite | standart ma'lumotlar bazasi |
+| PHPUnit | 12.x |
 
-## Learning Laravel
+> Eslatma: Vite va Tailwind sozlangan bo'lsa-da, sahifalar hozirda `public/css` va `public/js` dagi tayyor shablon resurslaridan foydalanadi.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+## O'rnatish
 
-In addition, [Laracasts](https://laracasts.com) contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+### Talablar
 
-You can also watch bite-sized lessons with real-world projects on [Laravel Learn](https://laravel.com/learn), where you will be guided through building a Laravel application from scratch while learning PHP fundamentals.
+- PHP 8.3+ (mbstring, xml, pdo_sqlite kengaytmalari bilan)
+- Composer
+- Node.js va npm
 
-## Agentic Development
-
-Laravel's predictable structure and conventions make it ideal for AI coding agents like Claude Code, Cursor, and GitHub Copilot. Install [Laravel Boost](https://laravel.com/docs/ai) to supercharge your AI workflow:
+### Qadamlar
 
 ```bash
-composer require laravel/boost --dev
+# Repozitoriydan keyin
+cd steakhouse
 
-php artisan boost:install
+# Bog'liqliklarni o'rnatish
+composer install
+npm install
+
+# .env faylini yaratish va kalit generatsiya qilish
+cp .env.example .env
+php artisan key:generate
+
+# Ma'lumotlar bazasini tayyorlash (session/cache/queue database driveridan foydalanadi)
+touch database/database.sqlite
+php artisan migrate
+
+# Frontendni yig'ish
+npm run build
 ```
 
-Boost provides your agent 15+ tools and skills that help agents build Laravel applications while following best practices.
+Barcha bosqichlarni bir komanda bilan bajarish uchun:
 
-## Contributing
+```bash
+composer setup
+```
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Ishga tushirish
 
-## Code of Conduct
+Barcha kerakli xizmatlar (server, queue, loglar, Vite) bilan bir komandada:
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+```bash
+composer dev
+```
 
-## Security Vulnerabilities
+Yoki alohida:
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+```bash
+php artisan serve
+npm run dev
+```
 
-## License
+Sayt `http://127.0.0.1:8000` manzilida ochiladi.
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+## Konfiguratsiya
+
+`.env` faylidagi asosiy parametrlar:
+
+```env
+APP_NAME="Steak House"
+APP_URL=http://localhost
+APP_LOCALE=uz
+APP_FALLBACK_LOCALE=en
+DB_CONNECTION=sqlite
+SESSION_DRIVER=database
+CACHE_STORE=database
+QUEUE_CONNECTION=database
+MAIL_MAILER=log
+```
+
+`APP_LOCALE` — til tanlanmagan holatdagi standart til (`uz` yoki `en`).
+
+## Marshrutlar
+
+| Metod | URL | Nomi | Tavsif |
+| --- | --- | --- | --- |
+| GET | `/` | `home` | Bosh sahifa |
+| GET | `/feature` | `feature` | Afzalliklar |
+| GET | `/about` | `about` | Biz haqimizda |
+| GET | `/menu` | `menu` | Taomnoma (`?category=`, `?page=`) |
+| GET | `/team` | `team` | Jamoa |
+| GET | `/gallery` | `gallery` | Galereya |
+| GET/POST | `/contact` | `contact` / `contact.submit` | Aloqa va stol band qilish |
+| GET | `/lang/{locale}` | `lang.switch` | Til almashinuvi (`uz`, `en`) |
+| GET | `/sitemap.xml` | `sitemap` | XML sayt xaritasi |
+| GET | `/up` | — | Sog'liqni tekshirish (health check) |
+
+## Testlar
+
+```bash
+php artisan test
+# yoki
+composer test
+```
+
+Testlar quyidagilarni qamrab oladi: barcha sahifalarning 200 javob qaytarishi, aloqa shakli validatsiyasi va rate limiting, til almashinuvi va tarjimalarning to'g'ri qo'llanishi, tarjima kalitlarining ikki tilda mosligi, taom rasmlarining mavjudligi, sitemap tuzilishi.
+
+## Loyiha tuzilmasi
+
+```
+app/
+├── Http/
+│   ├── Controllers/
+│   │   ├── PageController.php     # Sahifalar, aloqa shakli, sitemap
+│   │   └── UserController.php     # Foydalanuvchi misoli
+│   └── Middleware/
+│       └── SetLocale.php          # Session asosida tilni qo'llash
+├── Models/
+│   └── User.php
+└── Providers/
+    └── AppServiceProvider.php
+
+bootstrap/app.php                  # SetLocale middleware web guruhiga qo'shilgan
+config/                            # Laravel konfiguratsiyasi
+database/
+├── migrations/
+├── factories/
+└── seeders/
+lang/{uz,en}/                      # Tarjima fayllari
+resources/
+├── views/
+│   ├── components/
+│   │   ├── layouts/main.blade.php # Umumiy layout, SEO meta teglari, footer
+│   │   ├── navbar.blade.php       # Navigatsiya va til tanlagich
+│   │   └── menu-section.blade.php # Taomnoma, filtr va sahifalash
+│   └── *.blade.php                # Sahifa ko'rinishlari
+├── css/app.css
+└── js/app.js
+routes/web.php                     # Barcha veb-marshrutlar
+tests/{Feature,Unit}/              # Testlar
+```
+
+## Litsenziya
+
+Laravel framework ochiq manbali dastur bo'lib, [MIT litsenziyasi](https://opensource.org/licenses/MIT) ostida tarqatiladi.
